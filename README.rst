@@ -8,6 +8,7 @@ Simple Example
 ----------------------------------------
 
 import progressbar
+
 import time
 
 l = range(1,100)
