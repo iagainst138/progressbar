@@ -4,15 +4,13 @@ Progressbar
 A class to display a progressbar while doing a long running task in Python.
 
 
-Simple Example
-----------------------------------------
+Simple Example::
 
-import progressbar
+    import progressbar
+    import time
 
-import time
+    l = range(1,100)
 
-l = range(1,100)
-
-for i in progressbar.loop(l):
-    time.sleep(0.5)
+    for i in progressbar.loop(l):
+        time.sleep(0.5)
 
