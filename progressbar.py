@@ -119,10 +119,7 @@ class progressbar(object):
 
         # clear the line if the new line is shorter than the last
         if len(output) < len(self.previous_output):
-            line = ''
-            for i in range(0, len(self.previous_output)):
-                line += ' '
-            self.write(line)
+            self.write(' '.join(' ' for x in range(0, len(self.previous_output))))
 
         self.write(output)
 
@@ -153,3 +150,26 @@ def loop(l, **kwargs):
         yield item
         i+=1
     p.progress(len(l), len(l))
+
+def wait(sleep):
+    c = ['\\', '|', '/', '-']
+    if sleep > 0:
+        i = 0
+        previous_t = ''
+        while sleep > 0:
+            t = '\r' + c[i] + ' ' + str(sleep) + ' '
+            if len(t) < len(previous_t):
+                sys.stdout.write('\r' + ' '.join(' ' for x in range(0, len(previous_t))))
+                sys.stdout.flush()
+
+            sys.stdout.write(t)
+            sys.stdout.flush()
+            sleep -= 1
+            time.sleep(0.3)
+            i+=1
+            if i == len(c):
+                i=0
+            previous_t = t
+        clear = ' '.join(' ' for x in range(0, len(t)))
+        sys.stdout.write('\r' + clear + '\n')
+        sys.stdout.flush()
