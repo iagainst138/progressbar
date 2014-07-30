@@ -165,7 +165,7 @@ def wait(sleep):
             sys.stdout.write(t)
             sys.stdout.flush()
             sleep -= 1
-            time.sleep(0.3)
+            time.sleep(1)
             i+=1
             if i == len(c):
                 i=0
